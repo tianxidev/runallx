@@ -11,6 +11,6 @@
 
 **run**
 ```
-runall yarn dev-api dev-tcp
+runallx yarn dev-api dev-tcp
 ```
 

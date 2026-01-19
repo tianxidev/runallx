@@ -9,16 +9,15 @@
     "pnpm",
     "scripts",
     "parallel",
-    "runall",
-    "runs package.json"
+    "runallx"
   ],
-  "homepage": "https://github.com/tianxidev/runall#readme",
+  "homepage": "https://github.com/tianxidev/runallx#readme",
   "bugs": {
-    "url": "https://github.com/tianxidev/runall/issues"
+    "url": "https://github.com/tianxidev/runallx/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tianxidev/runall.git"
+    "url": "git+https://github.com/tianxidev/runallx.git"
   },
   "license": "MIT",
   "engines": {
