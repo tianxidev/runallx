@@ -1,5 +1,5 @@
 {
-  "name": "runall",
+  "name": "runallx",
   "version": "1.0.0",
   "description": "run all package.json",
   "keywords": [
@@ -28,10 +28,10 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "runall": "bin/runall.js"
+    "runallx": "bin/runallx.js"
   },
   "scripts": {
-    "runall": "node bin/runall.js",
+    "runallx": "node bin/runallx.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
