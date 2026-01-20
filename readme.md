@@ -1,5 +1,11 @@
 # RUNALL
 
+## install
+
+```
+npm i -g runallx
+```
+
 ## example
 
 ```package.json
@@ -12,5 +18,7 @@
 **run**
 ```
 runallx yarn dev-api dev-tcp
+runallx pnpm dev-api dev-tcp
+runallx npm dev-api dev-tcp
 ```
 

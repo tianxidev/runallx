@@ -42,7 +42,7 @@ console.log(`runall: starting ${scriptNames.join(', ')}`);
 
 const children = [];
 
-scriptNames.forEach((name) => {
+function spawnScript(name) {
   const args = pm === 'npm' ? ['run', name] : [name];
 
   const child = spawn(pm, args, {
@@ -51,23 +51,34 @@ scriptNames.forEach((name) => {
     env: process.env,
   });
 
-  readline.createInterface({ input: child.stdout }).on('line', (line) => {
+  readline.createInterface({ input: child.stdout }).on('line', line => {
     console.log(`[${name}] ${line}`);
   });
 
-  readline.createInterface({ input: child.stderr }).on('line', (line) => {
+  readline.createInterface({ input: child.stderr }).on('line', line => {
     console.error(`[${name}] ${line}`);
   });
 
-  child.on('exit', (code) => {
-    console.log(`[${name}] exited with code ${code}`);
+  child.on('exit', (code, signal) => {
+    console.log(`[${name}] exited with code ${code} signal ${signal}`);
+    setTimeout(() => {
+      console.log(`[${name}] restarting...`);
+      const newChild = spawnScript(name);
+      const index = children.findIndex(c => c.name === name);
+      if (index !== -1) children[index].child = newChild;
+    }, 1500);
   });
 
-  children.push(child);
+  return child;
+}
+
+scriptNames.forEach(name => {
+  const child = spawnScript(name);
+  children.push({ name, child });
 });
 
 process.on('SIGINT', () => {
   console.log('\nrunall: stopping all processes...');
-  children.forEach((c) => c.kill('SIGINT'));
+  children.forEach(c => c.child.kill('SIGINT'));
   process.exit(0);
 });
