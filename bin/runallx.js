@@ -47,7 +47,7 @@ function spawnScript(name) {
 
   const child = spawn(pm, args, {
     shell: true,
-    stdio: ['ignore', 'pipe', 'pipe'],
+    stdio: ['inherit', 'pipe', 'pipe'],
     env: process.env,
   });
 
